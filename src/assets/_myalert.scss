@@ -1,0 +1,39 @@
+$myalert-font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+$myalert-danger-c: rgb(221, 193, 193) !default;
+$myalert-success-c: rgb(181, 235, 193) !default;
+
+@mixin myalertcommon($color) {
+  border: 1px solid darken($color, 30);
+  background: $color;
+
+  > .title {
+    font-size: 20px;
+    color: darken($color, 60);
+  }
+  > .body {
+    font-size: 15px;
+    color: darken($color, 50);
+  }
+  @content;
+}
+
+%myalert {
+  padding: 5px 10px;
+  margin: 5px 0;
+  font-family: $myalert-font-family;
+}
+
+.myalert-danger {
+  @extend %myalert;
+
+  @include myalertcommon($myalert-danger-c) {
+    border-radius: 5px;
+  }
+}
+
+.myalert-success {
+  @extend %myalert;
+
+  @include myalertcommon($myalert-success-c);
+}
